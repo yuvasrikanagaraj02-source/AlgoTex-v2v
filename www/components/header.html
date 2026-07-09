@@ -1,0 +1,45 @@
+<div class="flex items-center justify-between w-full">
+  <!-- Left Side: Title & Breadcrumbs -->
+  <div class="space-y-0.5">
+    <h1 id="header-title" class="text-xl md:text-3xl font-extrabold text-slate-900 tracking-tight">RiseHer</h1>
+    <p id="header-subtitle" class="text-xs md:text-sm text-slate-500 font-medium hidden md:block">Welcome back to your workspace.</p>
+  </div>
+
+  <!-- Right Side: Header actions -->
+  <div class="flex items-center gap-3 md:gap-4">
+    <!-- Notification Bell with Dropdown -->
+    <div class="relative">
+      <button id="header-notif-btn" class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-2xl flex items-center justify-center text-slate-400 custom-shadow hover:text-[#E91E63] active:scale-95 transition-all relative">
+        <iconify-icon icon="lucide:bell" class="text-xl md:text-2xl"></iconify-icon>
+        <!-- Unread badge -->
+        <span id="header-notif-badge" class="absolute top-2.5 right-2.5 w-2 h-2 bg-[#E91E63] rounded-full border-2 border-white hidden"></span>
+      </button>
+
+      <!-- Notifications Dropdown Menu -->
+      <div id="header-notif-dropdown" class="absolute right-0 mt-3 w-80 bg-white rounded-[24px] custom-shadow-lg z-[100] hidden overflow-hidden border border-slate-100">
+        <div class="px-6 py-4 border-b border-slate-50 flex items-center justify-between">
+          <h4 class="font-extrabold text-sm text-slate-900">Notifications</h4>
+          <a href="notifications.html" class="text-[11px] font-bold text-[#E91E63] hover:underline">View All</a>
+        </div>
+        <div id="header-notif-list" class="divide-y divide-slate-50 max-h-64 overflow-y-auto custom-scrollbar">
+          <!-- Notification items dynamically injected here -->
+        </div>
+        <div class="p-3 text-center bg-slate-50 border-t border-slate-100">
+          <button onclick="layoutMarkAllNotificationsRead()" class="text-xs font-bold text-slate-600 hover:text-slate-900">Mark all as read</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Role Badge -->
+    <div id="header-role-badge" class="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-xl text-[10px] font-bold uppercase tracking-wider text-slate-600">
+      <iconify-icon icon="lucide:user" id="header-role-icon" class="text-slate-400"></iconify-icon>
+      <span id="header-role-text">Professional</span>
+    </div>
+
+    <!-- Quick Profile Trigger (Mobile) / Details (Desktop) -->
+    <a href="profile.html" class="flex items-center gap-2">
+      <img id="header-user-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100&h=100" class="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-pink-50" alt="Avatar">
+      <iconify-icon icon="lucide:chevron-down" class="text-slate-400 text-xs hidden md:block"></iconify-icon>
+    </a>
+  </div>
+</div>

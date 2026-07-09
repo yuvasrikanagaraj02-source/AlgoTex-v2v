@@ -1,0 +1,33 @@
+<!-- Professional Card Component Template -->
+<div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow flex flex-col justify-between space-y-4 hover:scale-[1.01] transition-all card-hover group">
+  <div class="flex gap-4">
+    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150" class="w-14 h-14 rounded-2xl object-cover shrink-0 ring-2 ring-pink-50" alt="Priya Sharma" id="card-photo">
+    <div class="min-w-0 space-y-0.5">
+      <div class="flex items-center gap-1.5">
+        <h4 class="font-extrabold text-slate-900 text-sm truncate" id="card-name">Priya Sharma</h4>
+        <iconify-icon icon="lucide:shield-check" class="text-green-500 text-base shrink-0" title="Verified Provider" id="card-verified"></iconify-icon>
+      </div>
+      <p class="text-xs font-bold text-pink-600 truncate" id="card-title">Tailoring Specialist</p>
+      <div class="flex items-center gap-1 text-[10px] text-slate-400 font-bold">
+        <iconify-icon icon="lucide:map-pin"></iconify-icon>
+        <span id="card-location">Mumbai, MH</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-b border-slate-50 py-3 flex items-center justify-between font-semibold text-xs text-slate-600">
+    <div class="flex items-center gap-0.5 text-yellow-500">
+      <iconify-icon icon="lucide:star" class="text-sm"></iconify-icon>
+      <span id="card-rating">4.8</span>
+      <span class="text-slate-300 font-normal">(<span id="card-reviews-count">120</span> reviews)</span>
+    </div>
+    <div>
+      <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wide leading-none">Starting Rates</span>
+      <p class="text-slate-800 font-extrabold mt-0.5" id="card-price">₹600</p>
+    </div>
+  </div>
+
+  <a href="professional-details.html?id=pro_priya" id="card-link" class="h-10 w-full bg-[#E91E63] text-white font-bold rounded-xl text-xs flex items-center justify-center hover:bg-[#D81B60] transition-all shadow shadow-pink-100">
+    View Profile
+  </a>
+</div>

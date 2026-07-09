@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Details - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 max-w-4xl space-y-6">
+        
+        <header class="flex items-center gap-4">
+          <a href="bookings.html" class="w-10 h-10 flex items-center justify-center text-slate-800 hover:bg-slate-50 rounded-full transition-colors">
+            <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+          </a>
+          <div>
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight leading-none" id="booking-id-header">Booking Details</h2>
+            <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mt-1" id="booking-status-tag">Status</p>
+          </div>
+        </header>
+
+        <!-- Booking Details Navigation Tabs -->
+        <nav class="flex gap-4 border-b border-slate-100 pb-px overflow-x-auto no-scrollbar font-bold text-xs">
+          <button onclick="switchTab('details')" id="tab-btn-details" class="py-3 px-4 text-[#E91E63] border-b-2 border-[#E91E63] whitespace-nowrap">Booking Details</button>
+          <button onclick="switchTab('customer')" id="tab-btn-customer" class="py-3 px-4 text-slate-400 hover:text-slate-600 whitespace-nowrap">Customer Profile</button>
+          <button onclick="switchTab('history')" id="tab-btn-history" class="py-3 px-4 text-slate-400 hover:text-slate-600 whitespace-nowrap">Order History</button>
+          <button onclick="switchTab('messages')" id="tab-btn-messages" class="py-3 px-4 text-slate-400 hover:text-slate-600 whitespace-nowrap">Messages</button>
+        </nav>
+
+        <!-- Tab 1: Booking Details Content -->
+        <section id="tab-pane-details" class="space-y-6">
+          <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-6">
+            <div class="flex flex-col md:flex-row gap-6 justify-between border-b border-slate-50 pb-6">
+              <div class="space-y-1">
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Service Requested</p>
+                <h3 id="detail-service-name" class="text-lg font-black text-slate-800">Bridal Blouse Stitching</h3>
+                <p id="detail-service-desc" class="text-xs text-slate-500 font-medium">Standard customization with heavy embroidery details</p>
+              </div>
+              <div class="space-y-1 text-left md:text-right">
+                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Service Price</p>
+                <h3 id="detail-service-price" class="text-2xl font-black text-[#E91E63]">₹2,500</h3>
+              </div>
+            </div>
+
+            <!-- Date, timings, slots, durations -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-slate-50 pb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-pink-50 text-[#E91E63] rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:calendar" class="text-xl"></iconify-icon></div>
+                <div>
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Scheduled Date</p>
+                  <p id="detail-date" class="text-xs font-bold text-slate-700">28 May, 2025</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-pink-50 text-[#E91E63] rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:clock" class="text-xl"></iconify-icon></div>
+                <div>
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Timings Slot</p>
+                  <p id="detail-time" class="text-xs font-bold text-slate-700">10:00 AM</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-pink-50 text-[#E91E63] rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:timer" class="text-xl"></iconify-icon></div>
+                <div>
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Estimated Duration</p>
+                  <p id="detail-duration" class="text-xs font-bold text-slate-700">4 Hours</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service location -->
+            <div class="space-y-2">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><iconify-icon icon="lucide:map-pin" class="text-slate-400"></iconify-icon>Location</h4>
+              <p id="detail-location" class="text-xs font-semibold text-slate-700 leading-relaxed">Flat 402, Sunshine Apartments, Goregaon West, Mumbai</p>
+            </div>
+
+            <!-- Customer Notes -->
+            <div class="space-y-2 border-t border-slate-50 pt-6">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Notes from Customer</h4>
+              <p id="detail-notes" class="text-xs text-slate-600 leading-relaxed font-semibold italic">"Please ensure the gold embroidery matches the sample photo."</p>
+            </div>
+
+            <!-- Payments details -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-50 pt-6">
+              <div class="p-4 bg-slate-50 rounded-2xl flex items-center justify-between text-xs font-semibold">
+                <span class="text-slate-400">Payment Status</span>
+                <span id="detail-payment-status" class="text-blue-600 font-bold">Partial Paid (₹500)</span>
+              </div>
+              <div class="p-4 bg-slate-50 rounded-2xl flex items-center justify-between text-xs font-semibold">
+                <span class="text-slate-400">Payment Method</span>
+                <span id="detail-payment-method" class="text-slate-800 font-bold">UPI - PhonePe</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 2: Customer Profile Content -->
+        <section id="tab-pane-customer" class="space-y-6 hidden">
+          <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow flex flex-col md:flex-row gap-6 items-center justify-between">
+            <div class="flex flex-col md:flex-row items-center gap-5">
+              <img id="cust-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-pink-50 shadow-sm" alt="Client">
+              <div class="text-center md:text-left space-y-1">
+                <h3 id="cust-name" class="text-lg font-black text-slate-900">Meena Kumari</h3>
+                <p class="text-xs font-semibold text-slate-500 flex items-center gap-1.5 justify-center md:justify-start">
+                  <iconify-icon icon="lucide:phone" class="text-slate-400"></iconify-icon>
+                  <span id="cust-phone">+91 98765 43210</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+              <a href="#" id="cust-call-btn" class="flex-1 md:flex-none h-11 px-5 bg-slate-50 hover:bg-pink-50 hover:text-[#E91E63] text-slate-600 font-bold rounded-xl text-xs flex items-center justify-center gap-2"><iconify-icon icon="lucide:phone"></iconify-icon>Call</a>
+              <a href="#" id="cust-email-btn" class="flex-1 md:flex-none h-11 px-5 bg-slate-50 hover:bg-pink-50 hover:text-[#E91E63] text-slate-600 font-bold rounded-xl text-xs flex items-center justify-center gap-2"><iconify-icon icon="lucide:mail"></iconify-icon>Email</a>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Client Metrics</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 bg-slate-50 rounded-2xl text-center space-y-1">
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Previous Bookings</p>
+                  <p id="cust-total-bookings" class="text-lg font-black text-slate-800">8</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-2xl text-center space-y-1">
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Avg Ratings Given</p>
+                  <p class="text-lg font-black text-yellow-500 flex items-center justify-center gap-1">
+                    <iconify-icon icon="lucide:star"></iconify-icon>
+                    5.0
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Special Requests / Preferences</h4>
+              <ul class="list-disc ml-5 text-xs text-slate-600 font-semibold space-y-2">
+                <li>Prefers weekend morning slots.</li>
+                <li>Frequently bookings customized Zardozi designs.</li>
+                <li>Prefers Hindi communication.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: Order History Content -->
+        <section id="tab-pane-history" class="space-y-6 hidden">
+          <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Meena Kumari's Service History</h4>
+            <div class="divide-y divide-slate-50 font-semibold text-xs text-slate-600">
+              <div class="py-4 flex items-center justify-between">
+                <div>
+                  <p class="text-slate-800 font-bold">Blouse Stitching - #RH-25102</p>
+                  <p class="text-[10px] text-slate-400 mt-1">12 May 2026 • Completed</p>
+                </div>
+                <span class="text-slate-900 font-extrabold">₹600</span>
+              </div>
+              <div class="py-4 flex items-center justify-between">
+                <div>
+                  <p class="text-slate-800 font-bold">Zardozi Embroidery Alterations - #RH-24901</p>
+                  <p class="text-[10px] text-slate-400 mt-1">05 May 2026 • Completed</p>
+                </div>
+                <span class="text-slate-900 font-extrabold">₹1,500</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: Messages Content -->
+        <section id="tab-pane-messages" class="space-y-6 hidden">
+          <div class="bg-white rounded-3xl border border-slate-50 custom-shadow flex flex-col h-[400px]">
+            <div class="flex-1 p-4 overflow-y-auto custom-scrollbar space-y-4 font-semibold text-xs">
+              <div class="flex justify-center"><span class="px-2 py-0.5 bg-slate-100 text-[10px] font-bold text-slate-400 rounded">Today</span></div>
+              <div class="flex gap-2 max-w-[80%] items-start">
+                <img id="chat-msg-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-8 h-8 rounded-full object-cover shrink-0">
+                <div class="p-3 bg-slate-100 rounded-2xl rounded-tl-none text-slate-700 leading-relaxed">
+                  Hi Priya! Let me know if you received the reference photo for gold thread matching.
+                </div>
+              </div>
+              <div class="flex gap-2 max-w-[80%] items-start ml-auto flex-row-reverse">
+                <div class="p-3 bg-[#E91E63] text-white rounded-2xl rounded-tr-none leading-relaxed">
+                  Hello Meena! Yes, I received it. The pattern is beautiful, and I've matching gold threads.
+                </div>
+              </div>
+            </div>
+            <div class="p-3 border-t border-slate-50 flex items-center gap-2 bg-slate-50 rounded-b-3xl">
+              <input type="text" placeholder="Type message..." class="flex-1 px-4 py-2.5 bg-white border border-slate-100 rounded-xl text-xs font-semibold outline-none focus:border-[#E91E63]">
+              <button class="w-10 h-10 bg-[#E91E63] text-white rounded-xl flex items-center justify-center"><iconify-icon icon="lucide:send"></iconify-icon></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Action Workflow footer box -->
+        <section id="workflow-action-panel" class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow flex flex-col gap-3">
+          <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Workflow Actions</h4>
+          <div id="action-buttons-div" class="flex flex-col md:flex-row gap-3">
+            <!-- Dynamic workflow controls populated by JS -->
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    let bookingId = "RH-28952";
+    let activeBooking = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      bookingId = urlParams.get("id") || "RH-28952";
+
+      loadBookingDetails();
+    });
+
+    function loadBookingDetails() {
+      const bookings = JSON.parse(localStorage.getItem(Auth.KEYS.USER_BOOKINGS)) || [];
+      activeBooking = bookings.find(b => b.id === bookingId) || bookings[0];
+
+      if (!activeBooking) return;
+
+      // Header values
+      document.getElementById("booking-id-header").textContent = `Booking Request ${activeBooking.id}`;
+      
+      const statusTag = document.getElementById("booking-status-tag");
+      statusTag.textContent = activeBooking.status;
+      
+      let colorClass = "text-[#E91E63] bg-pink-50";
+      if (activeBooking.status === "Confirmed") colorClass = "text-green-600 bg-green-50";
+      if (activeBooking.status === "In Progress") colorClass = "text-indigo-600 bg-indigo-50";
+      if (activeBooking.status === "Completed") colorClass = "text-blue-600 bg-blue-50";
+      if (activeBooking.status === "Cancelled" || activeBooking.status === "Rejected") colorClass = "text-red-500 bg-red-50";
+      statusTag.className = `px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider inline-block ${colorClass}`;
+
+      // Tab 1 details
+      document.getElementById("detail-service-name").textContent = activeBooking.serviceName;
+      document.getElementById("detail-service-price").textContent = `₹${activeBooking.price}`;
+      document.getElementById("detail-date").textContent = activeBooking.date;
+      document.getElementById("detail-time").textContent = activeBooking.time;
+      document.getElementById("detail-duration").textContent = activeBooking.duration;
+      document.getElementById("detail-location").textContent = activeBooking.location;
+      document.getElementById("detail-notes").textContent = `"${activeBooking.notes}"`;
+      document.getElementById("detail-payment-status").textContent = activeBooking.paymentStatus;
+      document.getElementById("detail-payment-method").textContent = activeBooking.paymentMethod;
+
+      // Tab 2 Customer
+      document.getElementById("cust-avatar").src = activeBooking.avatarUrl;
+      document.getElementById("chat-msg-avatar").src = activeBooking.avatarUrl;
+      document.getElementById("cust-name").textContent = activeBooking.customerName;
+      document.getElementById("cust-phone").textContent = activeBooking.customerPhone;
+      document.getElementById("cust-total-bookings").textContent = activeBooking.previousBookingsCount;
+      document.getElementById("cust-call-btn").href = `tel:${activeBooking.customerPhone}`;
+      document.getElementById("cust-email-btn").href = `mailto:${activeBooking.customerName.toLowerCase().replace(/ /g, "")}@example.com`;
+
+      // Render workflow action buttons based on status
+      renderWorkflowActions();
+    }
+
+    function switchTab(tabName) {
+      // Hide all panes
+      ["details", "customer", "history", "messages"].forEach(t => {
+        document.getElementById(`tab-pane-${t}`).classList.add("hidden");
+        
+        const btn = document.getElementById(`tab-btn-${t}`);
+        btn.className = "py-3 px-4 text-slate-400 hover:text-slate-600 whitespace-nowrap";
+      });
+
+      // Show selected
+      document.getElementById(`tab-pane-${tabName}`).classList.remove("hidden");
+      document.getElementById(`tab-btn-${tabName}`).className = "py-3 px-4 text-[#E91E63] border-b-2 border-[#E91E63] whitespace-nowrap";
+    }
+
+    function renderWorkflowActions() {
+      const actionsDiv = document.getElementById("action-buttons-div");
+      if (!actionsDiv) return;
+
+      const status = activeBooking.status;
+      const role = Auth.getRole();
+
+      if (role === "customer") {
+        if (status === "Pending" || status === "Confirmed" || status === "In Progress") {
+          actionsDiv.innerHTML = `
+            <button onclick="triggerReschedule()" class="flex-1 h-12 bg-[#E91E63] hover:bg-[#D81B60] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:calendar"></iconify-icon>Reschedule Booking</button>
+            <button onclick="updateBookingStatus('Cancelled')" class="flex-1 h-12 border border-red-200 text-red-500 hover:bg-red-50 rounded-xl font-bold text-xs flex items-center justify-center transition-colors">Cancel Booking</button>
+            <button onclick="switchTab('messages')" class="flex-1 h-12 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:message-square"></iconify-icon>Message Professional</button>
+          `;
+        } else if (status === "Completed") {
+          actionsDiv.innerHTML = `
+            <p class="text-xs font-semibold text-slate-400 italic">This booking has been completed. Leave a review on customer-reviews.html!</p>
+          `;
+        } else {
+          actionsDiv.innerHTML = `
+            <p class="text-xs font-semibold text-red-500 italic">This booking has been cancelled / rejected.</p>
+          `;
+        }
+      } else {
+        // Professional Mode (Original behavior)
+        if (status === "Pending") {
+          actionsDiv.innerHTML = `
+            <button onclick="updateBookingStatus('Confirmed')" class="flex-1 h-12 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:check-circle"></iconify-icon>Accept Request</button>
+            <button onclick="updateBookingStatus('Rejected')" class="flex-1 h-12 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-xl font-bold text-xs flex items-center justify-center transition-colors">Reject</button>
+            <button onclick="triggerReschedule()" class="flex-1 h-12 border border-slate-200 text-slate-600 hover:bg-slate-50 rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:calendar"></iconify-icon>Reschedule</button>
+          `;
+        } else if (status === "Confirmed") {
+          actionsDiv.innerHTML = `
+            <button onclick="updateBookingStatus('In Progress')" class="flex-1 h-12 bg-[#E91E63] hover:bg-[#D81B60] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:scissors"></iconify-icon>Start Service</button>
+            <button onclick="updateBookingStatus('Cancelled')" class="flex-1 h-12 border border-slate-200 text-slate-500 hover:bg-slate-50 rounded-xl font-bold text-xs flex items-center justify-center transition-colors">Cancel Booking</button>
+          `;
+        } else if (status === "In Progress") {
+          actionsDiv.innerHTML = `
+            <button onclick="updateBookingStatus('Completed')" class="flex-1 h-12 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-colors"><iconify-icon icon="lucide:check-circle"></iconify-icon>Mark Completed</button>
+            <button onclick="updateBookingStatus('Cancelled')" class="flex-1 h-12 border border-slate-200 text-slate-500 hover:bg-slate-50 rounded-xl font-bold text-xs flex items-center justify-center transition-colors">Cancel</button>
+          `;
+        } else if (status === "Completed") {
+          actionsDiv.innerHTML = `
+            <p class="text-xs font-semibold text-slate-400 italic">This booking has been completed. Payment is settled via ${activeBooking.paymentMethod}.</p>
+          `;
+        } else if (status === "Cancelled" || status === "Rejected") {
+          actionsDiv.innerHTML = `
+            <p class="text-xs font-semibold text-red-500 italic">This booking has been cancelled / rejected.</p>
+          `;
+        }
+      }
+    }
+
+    window.updateBookingStatus = function(newStatus) {
+      const bookings = JSON.parse(localStorage.getItem(Auth.KEYS.USER_BOOKINGS)) || [];
+      
+      const updated = bookings.map(b => {
+        if (b.id === bookingId) {
+          // If status changes to completed, payment settles
+          let payment = b.paymentStatus;
+          if (newStatus === "Completed") payment = "Fully Paid";
+          return { ...b, status: newStatus, paymentStatus: payment };
+        }
+        return b;
+      });
+
+      localStorage.setItem(Auth.KEYS.USER_BOOKINGS, JSON.stringify(updated));
+      
+      // Reload details
+      loadBookingDetails();
+
+      // Fire notification alert
+      const notifs = JSON.parse(localStorage.getItem(Auth.KEYS.USER_NOTIFICATIONS)) || [];
+      notifs.unshift({
+        id: "notif_" + Date.now(),
+        type: "booking",
+        title: "Booking Updated",
+        message: `Booking #${bookingId} status is now ${newStatus}`,
+        time: "Just now",
+        isRead: false,
+        link: "booking-details.html?id=" + bookingId
+      });
+      localStorage.setItem(Auth.KEYS.USER_NOTIFICATIONS, JSON.stringify(notifs));
+    };
+
+    window.triggerReschedule = function() {
+      const newDate = prompt("Enter new date slot (e.g. 30 Jun, 2026):", activeBooking.date);
+      if (newDate) {
+        const bookings = JSON.parse(localStorage.getItem(Auth.KEYS.USER_BOOKINGS)) || [];
+        const updated = bookings.map(b => {
+          if (b.id === bookingId) {
+            return { ...b, date: newDate, status: "Pending" };
+          }
+          return b;
+        });
+        localStorage.setItem(Auth.KEYS.USER_BOOKINGS, JSON.stringify(updated));
+        loadBookingDetails();
+      }
+    };
+  </script>
+</body>
+</html>

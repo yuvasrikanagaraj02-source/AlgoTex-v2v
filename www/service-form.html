@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Editor - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 max-w-3xl space-y-8">
+        
+        <header class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h2 id="form-title" class="text-2xl font-black text-slate-900 tracking-tight">Add New Service</h2>
+            <p class="text-xs text-slate-500 font-semibold">List a new skill/service for local customers to book.</p>
+          </div>
+        </header>
+
+        <form id="service-editor-form" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-50 custom-shadow space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Service Name</label>
+              <input type="text" id="srv-name" required placeholder="e.g. Silk Saree Draping" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:border-[#E91E63] outline-none transition-all">
+            </div>
+            
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Service Category</label>
+              <div class="relative">
+                <select id="srv-category" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 appearance-none outline-none focus:bg-white focus:border-[#E91E63]">
+                  <option value="Tailoring">Tailoring Specialist</option>
+                  <option value="Beautician">Beautician</option>
+                  <option value="Mehendi Artist">Mehendi Artist</option>
+                  <option value="Embroidery Worker">Embroidery Specialist</option>
+                  <option value="Home Teacher">Teaching</option>
+                  <option value="Cooking Chef">Cooking & Catering</option>
+                </select>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                  <iconify-icon icon="lucide:chevron-down"></iconify-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Price (₹)</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs">₹</span>
+                <input type="number" id="srv-price" required placeholder="0" class="w-full pl-8 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:border-[#E91E63] outline-none transition-all">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Turnaround / Duration</label>
+              <input type="text" id="srv-duration" required placeholder="e.g. 2 hours, 3-5 days" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:border-[#E91E63] outline-none transition-all">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Description</label>
+            <textarea id="srv-desc" rows="4" required placeholder="Outline details, customizations, and requirements..." class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl text-xs font-semibold text-slate-700 focus:bg-white focus:border-[#E91E63] outline-none resize-none"></textarea>
+          </div>
+
+          <!-- Availability Toggle -->
+          <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#E91E63] custom-shadow shrink-0"><iconify-icon icon="lucide:power" class="text-xl"></iconify-icon></div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-800">Available For Bookings</h4>
+                <p class="text-[10px] text-slate-400 font-medium">Turn off to hide this service from public search page</p>
+              </div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer select-none">
+              <input type="checkbox" id="srv-status-toggle" checked class="sr-only peer">
+              <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+            </label>
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-6 border-t border-slate-50">
+            <a href="services.html" class="h-11 px-6 border border-slate-200 text-slate-600 font-bold rounded-xl text-xs flex items-center justify-center hover:bg-slate-50 transition-all">Cancel</a>
+            <button type="submit" class="h-11 px-8 bg-[#E91E63] text-white font-bold rounded-xl hover:bg-[#D81B60] text-xs transition-all shadow-lg shadow-pink-100">Save Listing</button>
+          </div>
+        </form>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    let serviceId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check if editing a service
+      const urlParams = new URLSearchParams(window.location.search);
+      serviceId = urlParams.get("id");
+
+      if (serviceId) {
+        document.getElementById("form-title").textContent = "Edit Service Listing";
+        
+        // Load details from localStorage
+        const services = JSON.parse(localStorage.getItem(Auth.KEYS.USER_SERVICES)) || [];
+        const currentService = services.find(s => s.id === serviceId);
+        
+        if (currentService) {
+          document.getElementById("srv-name").value = currentService.name;
+          document.getElementById("srv-category").value = currentService.category;
+          document.getElementById("srv-price").value = currentService.price;
+          document.getElementById("srv-duration").value = currentService.duration;
+          document.getElementById("srv-desc").value = currentService.description;
+          document.getElementById("srv-status-toggle").checked = currentService.status === "Active";
+        }
+      }
+    });
+
+    document.getElementById("service-editor-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const services = JSON.parse(localStorage.getItem(Auth.KEYS.USER_SERVICES)) || [];
+      const statusValue = document.getElementById("srv-status-toggle").checked ? "Active" : "Inactive";
+
+      if (serviceId) {
+        // Editing existing
+        const updated = services.map(s => {
+          if (s.id === serviceId) {
+            return {
+              ...s,
+              name: document.getElementById("srv-name").value,
+              category: document.getElementById("srv-category").value,
+              price: parseInt(document.getElementById("srv-price").value),
+              duration: document.getElementById("srv-duration").value,
+              description: document.getElementById("srv-desc").value,
+              status: statusValue
+            };
+          }
+          return s;
+        });
+        localStorage.setItem(Auth.KEYS.USER_SERVICES, JSON.stringify(updated));
+      } else {
+        // Adding new
+        const newService = {
+          id: "srv_" + Date.now(),
+          name: document.getElementById("srv-name").value,
+          category: document.getElementById("srv-category").value,
+          price: parseInt(document.getElementById("srv-price").value),
+          duration: document.getElementById("srv-duration").value,
+          description: document.getElementById("srv-desc").value,
+          status: statusValue,
+          rating: 5.0,
+          reviewsCount: 0
+        };
+        services.unshift(newService);
+        localStorage.setItem(Auth.KEYS.USER_SERVICES, JSON.stringify(services));
+      }
+
+      // Redirect back
+      window.location.href = "services.html";
+    });
+  </script>
+</body>
+</html>

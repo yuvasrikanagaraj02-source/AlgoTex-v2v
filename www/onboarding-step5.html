@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Complete - RiseHer Onboarding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 md:p-12">
+  <div class="bg-white w-full max-w-5xl rounded-[32px] overflow-hidden custom-shadow-lg flex flex-col md:flex-row min-h-[600px]">
+    
+    <!-- Left Panel: Profile Complete Celebration -->
+    <div class="flex-1 p-6 md:p-10 flex flex-col justify-between border-r border-slate-50">
+      <div class="space-y-6">
+        <!-- Header -->
+        <header class="flex items-center gap-3">
+          <a href="onboarding-step4.html" class="w-10 h-10 flex items-center justify-center text-slate-800 hover:bg-slate-50 rounded-full transition-colors">
+            <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+          </a>
+          <div>
+            <h1 class="text-xl font-bold text-slate-900">Setup Complete</h1>
+            <p class="text-xs text-slate-400">Step 5 of 5 • Profile Ready</p>
+          </div>
+        </header>
+
+        <!-- Step Bar -->
+        <div class="space-y-2">
+          <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div class="progress-bar h-full w-full rounded-full"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-center text-center space-y-4 pt-4">
+          <div class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center success-pulse shadow-inner">
+            <iconify-icon icon="lucide:party-popper" class="text-4xl text-[#E91E63]"></iconify-icon>
+          </div>
+          <div class="space-y-1">
+            <h2 class="text-2xl font-extrabold tracking-tight text-slate-900">Your profile is live!</h2>
+            <p class="text-sm text-slate-500 max-w-sm leading-relaxed">Priya Sharma, you are now registered as a Tailoring Specialist and ready to receive local customers in Mumbai!</p>
+          </div>
+        </div>
+
+        <!-- Visibility Banner tip -->
+        <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl flex gap-3 items-start">
+          <iconify-icon icon="lucide:award" class="text-xl text-indigo-600 mt-0.5 shrink-0"></iconify-icon>
+          <div>
+            <h4 class="text-xs font-bold text-indigo-900">Why verify your profile?</h4>
+            <p class="text-[11px] text-indigo-700/80 leading-relaxed mt-0.5">Fully verified professional accounts receive 3x more page views and get priority recommendations in discovery.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <footer class="pt-8 border-t border-slate-50 flex items-center gap-4">
+        <a href="onboarding-step4.html" class="flex-1 h-[54px] flex items-center justify-center border border-slate-200 text-slate-600 font-bold rounded-2xl active:bg-slate-50 transition-all">Previous</a>
+        <button id="btn-finish" class="flex-[2] h-[54px] flex items-center justify-center bg-[#E91E63] text-white font-bold rounded-2xl hover:bg-[#D81B60] active:scale-[0.98] transition-all shadow-lg shadow-pink-100">Go To Dashboard</button>
+      </footer>
+    </div>
+
+    <!-- Right Panel: Profile Completion Tracker Checklist -->
+    <div class="flex-1 bg-slate-50 p-6 md:p-10 flex flex-col justify-between w-full md:w-[420px] shrink-0 border-l border-slate-100 relative overflow-hidden">
+      <!-- Decorator -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-pink-100 rounded-full filter blur-3xl opacity-30 -mr-20 -mt-20"></div>
+
+      <div class="space-y-6 relative z-10 w-full">
+        <!-- Progress Summary -->
+        <div class="flex items-center justify-between border-b border-slate-200/60 pb-4">
+          <div>
+            <h3 class="text-base font-extrabold text-slate-800">Completion Tracker</h3>
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Profile Score</p>
+          </div>
+          <span class="text-xl font-black text-[#E91E63] bg-white w-14 h-14 rounded-2xl flex items-center justify-center custom-shadow">80%</span>
+        </div>
+
+        <!-- Stepper Indicators -->
+        <div class="space-y-4 font-semibold text-sm">
+          <!-- Step 1 Complete -->
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="lucide:check-circle-2" class="text-green-500 text-xl shrink-0 mt-0.5"></iconify-icon>
+            <div>
+              <p class="text-slate-800 font-bold">Basic Information</p>
+              <p class="text-[10px] text-slate-400 leading-none mt-0.5">Completed</p>
+            </div>
+          </div>
+
+          <!-- Step 2 Complete -->
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="lucide:check-circle-2" class="text-green-500 text-xl shrink-0 mt-0.5"></iconify-icon>
+            <div>
+              <p class="text-slate-800 font-bold">Services Pricing</p>
+              <p class="text-[10px] text-slate-400 leading-none mt-0.5">Completed</p>
+            </div>
+          </div>
+
+          <!-- Step 3 Complete -->
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="lucide:check-circle-2" class="text-green-500 text-xl shrink-0 mt-0.5"></iconify-icon>
+            <div>
+              <p class="text-slate-800 font-bold">Portfolio Preview</p>
+              <p class="text-[10px] text-slate-400 leading-none mt-0.5">3 photos uploaded</p>
+            </div>
+          </div>
+
+          <!-- Step 4 Missing/Warning -->
+          <div class="flex items-start gap-3 p-3 bg-white rounded-2xl custom-shadow border border-orange-100">
+            <iconify-icon icon="lucide:alert-circle" class="text-orange-500 text-xl shrink-0 mt-0.5"></iconify-icon>
+            <div>
+              <p class="text-slate-800 font-extrabold text-xs">Missing Documents</p>
+              <p class="text-[10px] text-slate-500 leading-normal mt-0.5">Identity proofs are pending admin verification checks (Aadhar, Certificates)</p>
+            </div>
+          </div>
+          
+          <!-- Pricing Complete -->
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="lucide:check-circle-2" class="text-green-500 text-xl shrink-0 mt-0.5"></iconify-icon>
+            <div>
+              <p class="text-slate-800 font-bold">Pricing Setup</p>
+              <p class="text-[10px] text-slate-400 leading-none mt-0.5">Budget/Standard set</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center pt-8 border-t border-slate-200/60 mt-8">
+        <p class="text-[10px] text-slate-400 leading-relaxed font-semibold">You can update missing documents or add portfolio photos directly in your Dashboard profile menu.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById("btn-finish").addEventListener("click", () => {
+      // Set completion to 80% to showcase nudges on dashboard
+      const profile = Auth.getProfile();
+      if (profile) {
+        profile.completionScore = 80;
+        Auth.saveProfile(profile);
+      }
+      // Redirect to Dashboard
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

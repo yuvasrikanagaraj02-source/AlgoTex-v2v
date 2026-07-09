@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Work & Professionals - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 space-y-8">
+        
+        <header class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Discovery Search</h2>
+            <p class="text-xs text-slate-500 font-semibold">Browse local women micro-entrepreneurs and skilled professionals in Mumbai.</p>
+          </div>
+        </header>
+
+        <!-- Search input query box -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-3">
+          <div class="md:col-span-2 bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2">
+            <iconify-icon icon="lucide:search" class="text-slate-400"></iconify-icon>
+            <input type="text" id="query-input" oninput="searchDirectory()" placeholder="Search by name, skill..." class="bg-transparent border-none outline-none w-full text-xs font-semibold text-slate-700">
+          </div>
+          <div class="bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2">
+            <iconify-icon icon="lucide:map-pin" class="text-slate-400"></iconify-icon>
+            <input type="text" id="location-input" value="Mumbai" oninput="searchDirectory()" placeholder="Location..." class="bg-transparent border-none outline-none w-full text-xs font-semibold text-slate-700">
+          </div>
+          <!-- Distance -->
+          <div class="bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2">
+            <select id="distance-filter" onchange="searchDirectory()" class="bg-transparent border-none outline-none w-full text-xs font-semibold text-slate-700">
+              <option value="any">Distance: Any</option>
+              <option value="2">Within 2 km</option>
+              <option value="3">Within 3 km</option>
+              <option value="5">Within 5 km</option>
+            </select>
+          </div>
+          <!-- Rating -->
+          <div class="bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2">
+            <select id="rating-filter" onchange="searchDirectory()" class="bg-transparent border-none outline-none w-full text-xs font-semibold text-slate-700">
+              <option value="any">Rating: Any</option>
+              <option value="4.5">4.5+ Stars</option>
+              <option value="4.8">4.8+ Stars</option>
+            </select>
+          </div>
+          <!-- Price -->
+          <div class="bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2">
+            <select id="price-filter" onchange="searchDirectory()" class="bg-transparent border-none outline-none w-full text-xs font-semibold text-slate-700">
+              <option value="any">Price: Any</option>
+              <option value="Budget">Budget</option>
+              <option value="Standard">Standard</option>
+              <option value="Premium">Premium</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Availability filter & categories -->
+        <section class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar font-bold text-xs">
+            <button onclick="filterCategory('all')" id="cat-search-all" class="py-2.5 px-4 bg-[#E91E63] text-white rounded-xl whitespace-nowrap shadow shadow-pink-100">All Skills</button>
+            <button onclick="filterCategory('Tailoring')" id="cat-search-Tailoring" class="py-2.5 px-4 bg-white border border-slate-100 text-slate-400 hover:text-slate-600 rounded-xl whitespace-nowrap">Tailors</button>
+            <button onclick="filterCategory('Beautician')" id="cat-search-Beautician" class="py-2.5 px-4 bg-white border border-slate-100 text-slate-400 hover:text-slate-600 rounded-xl whitespace-nowrap">Beauticians</button>
+            <button onclick="filterCategory('Embroidery')" id="cat-search-Embroidery" class="py-2.5 px-4 bg-white border border-slate-100 text-slate-400 hover:text-slate-600 rounded-xl whitespace-nowrap">Embroidery</button>
+            <button onclick="filterCategory('Cooking')" id="cat-search-Cooking" class="py-2.5 px-4 bg-white border border-slate-100 text-slate-400 hover:text-slate-600 rounded-xl whitespace-nowrap">Catering</button>
+          </div>
+          <div class="bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2 self-start lg:self-auto">
+            <select id="avail-filter" onchange="searchDirectory()" class="bg-transparent border-none outline-none text-xs font-semibold text-slate-700">
+              <option value="any">Availability: Any</option>
+              <option value="weekdays">Weekdays</option>
+              <option value="weekends">Weekends</option>
+              <option value="all">Seven Days</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Professionals Results Grid -->
+        <section id="search-results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated from JS -->
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    let activeSearchCategory = "all";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Toggle filters based on active role
+      adjustFiltersForRole();
+
+      // Check query params
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialQuery = urlParams.get("q");
+      if (initialQuery) {
+        document.getElementById("query-input").value = initialQuery;
+      }
+      renderSearchDirectory();
+    });
+
+    function adjustFiltersForRole() {
+      if (typeof Auth === "undefined") return;
+      const role = Auth.getRole();
+      if (role === "professional") {
+        const locationInput = document.getElementById("location-input");
+        const distanceFilter = document.getElementById("distance-filter");
+        const ratingFilter = document.getElementById("rating-filter");
+        const priceFilter = document.getElementById("price-filter");
+        const availFilter = document.getElementById("avail-filter");
+
+        if (locationInput) locationInput.parentElement.classList.add("hidden");
+        if (distanceFilter) distanceFilter.parentElement.classList.add("hidden");
+        if (ratingFilter) ratingFilter.parentElement.classList.add("hidden");
+        if (priceFilter) priceFilter.parentElement.classList.add("hidden");
+        if (availFilter) availFilter.parentElement.classList.add("hidden");
+        
+        const queryInput = document.getElementById("query-input");
+        if (queryInput) {
+          const searchSection = queryInput.closest("section");
+          if (searchSection) {
+            searchSection.className = "grid grid-cols-1 gap-3";
+            queryInput.parentElement.className = "bg-white px-4 py-2.5 rounded-xl border border-slate-100 custom-shadow flex items-center gap-2 w-full";
+          }
+        }
+      }
+    }
+
+    function renderSearchDirectory() {
+      const grid = document.getElementById("search-results-grid");
+      if (!grid) return;
+
+      const q = document.getElementById("query-input").value.toLowerCase();
+      const loc = document.getElementById("location-input").value.toLowerCase();
+      
+      const distanceFilter = document.getElementById("distance-filter").value;
+      const ratingFilter = document.getElementById("rating-filter").value;
+      const priceFilter = document.getElementById("price-filter").value;
+      const availFilter = document.getElementById("avail-filter").value;
+
+      const professionals = window.PROFESSIONALS || [];
+
+      let filtered = professionals.filter(p => {
+        // Text Search Match
+        const textMatch = p.name.toLowerCase().includes(q) || 
+                          p.title.toLowerCase().includes(q) || 
+                          p.category.toLowerCase().includes(q) ||
+                          p.bio.toLowerCase().includes(q);
+
+        // Location Match
+        const locationMatch = p.location.toLowerCase().includes(loc);
+
+        // Distance Match
+        let distanceMatch = true;
+        if (distanceFilter !== "any") {
+          distanceMatch = p.distance <= parseFloat(distanceFilter);
+        }
+
+        // Rating Match
+        let ratingMatch = true;
+        if (ratingFilter !== "any") {
+          ratingMatch = p.rating >= parseFloat(ratingFilter);
+        }
+
+        // Price Tier Match
+        let priceMatch = true;
+        if (priceFilter !== "any") {
+          priceMatch = p.priceTier === priceFilter;
+        }
+
+        // Availability Match
+        let availMatch = true;
+        if (availFilter !== "any") {
+          availMatch = p.availability === availFilter || p.availability === "all";
+        }
+
+        return textMatch && locationMatch && distanceMatch && ratingMatch && priceMatch && availMatch;
+      });
+
+      // Category filter
+      if (activeSearchCategory !== "all") {
+        filtered = filtered.filter(p => p.category === activeSearchCategory);
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-12 text-center text-xs text-slate-400 font-bold border border-slate-50 custom-shadow">
+            <iconify-icon icon="lucide:users-2" class="text-4xl text-slate-200 mb-2 block mx-auto"></iconify-icon>
+            No professionals listed match this search criteria
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => window.renderProfessionalCard(p)).join("");
+    }
+
+    window.searchDirectory = renderSearchDirectory;
+
+    window.filterCategory = function(cat) {
+      activeSearchCategory = cat;
+      
+      ["all", "Tailoring", "Beautician", "Embroidery", "Cooking"].forEach(c => {
+        const btn = document.getElementById(`cat-search-${c}`);
+        if (!btn) return;
+        if (c === cat) {
+          btn.className = "py-2.5 px-4 bg-[#E91E63] text-white rounded-xl whitespace-nowrap shadow shadow-pink-100 font-bold text-xs";
+        } else {
+          btn.className = "py-2.5 px-4 bg-white border border-slate-100 text-slate-400 hover:text-slate-600 rounded-xl whitespace-nowrap font-bold text-xs";
+        }
+      });
+
+      renderSearchDirectory();
+    }
+  </script>
+</body>
+</html>

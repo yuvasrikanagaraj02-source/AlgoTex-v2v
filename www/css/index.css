@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #E91E63;
+  --primary-hover: #D81B60;
+  --primary-light: #FDF2F8;
+  --bg-main: #FAFAFA;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1a1a1a;
+  background-color: var(--bg-main);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom modern scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+/* Custom premium design classes */
+.custom-shadow {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.custom-shadow-lg {
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #E91E63 0%, #FF6090 100%);
+  transition: width 0.5s ease-in-out;
+}
+
+.sidebar-active {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border-right: 4px solid var(--primary);
+}
+
+.ai-gradient {
+  background: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 100%);
+}
+
+.earnings-gradient {
+  background: linear-gradient(135deg, #E91E63 0%, #FF6090 100%);
+}
+
+/* Switches and UI utilities */
+.switch-input:checked + .switch-slider {
+  background-color: var(--primary);
+}
+
+.switch-slider:before {
+  content: '';
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .switch-slider:before {
+  transform: translateX(16px);
+}
+
+/* Image preview slot aspect ratio */
+.image-slot {
+  aspect-ratio: 1/1;
+}
+
+/* Pulse animation */
+.success-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .7; }
+}
+
+/* Chat bubble styling */
+.chat-bubble-received {
+  background-color: #F1F5F9;
+  border-radius: 0 16px 16px 16px;
+}
+
+.chat-bubble-sent {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 16px 16px 0 16px;
+}
