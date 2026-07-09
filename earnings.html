@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings & Payouts - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 space-y-8">
+        
+        <header class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Earnings & Payouts</h2>
+            <p class="text-xs text-slate-500 font-semibold">Track your available balance, withdrawal history, and payout settings.</p>
+          </div>
+        </header>
+
+        <!-- Balance Summary Cards Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-3xl border border-slate-50 custom-shadow flex flex-col justify-between hover:scale-[1.01] transition-transform">
+            <div class="flex items-start justify-between">
+              <div class="w-10 h-10 bg-green-50 text-green-500 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:banknote" class="text-xl"></iconify-icon></div>
+              <span class="px-2 py-0.5 bg-green-50 text-green-600 text-[9px] font-bold rounded uppercase">Available</span>
+            </div>
+            <div class="mt-4">
+              <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Available Balance</p>
+              <h3 id="earn-avail-bal" class="text-2xl font-black text-slate-800 mt-1">₹14,300</h3>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-3xl border border-slate-50 custom-shadow flex flex-col justify-between hover:scale-[1.01] transition-transform">
+            <div class="flex items-start justify-between">
+              <div class="w-10 h-10 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:clock-4" class="text-xl"></iconify-icon></div>
+              <span class="px-2 py-0.5 bg-orange-50 text-orange-600 text-[9px] font-bold rounded uppercase">Pending</span>
+            </div>
+            <div class="mt-4">
+              <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Pending Amount</p>
+              <h3 id="earn-pend-bal" class="text-2xl font-black text-slate-800 mt-1">₹2,500</h3>
+            </div>
+          </div>
+          <div class="bg-white p-6 rounded-3xl border border-slate-50 custom-shadow flex flex-col justify-between hover:scale-[1.01] transition-transform">
+            <div class="flex items-start justify-between">
+              <div class="w-10 h-10 bg-pink-50 text-[#E91E63] rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:history" class="text-xl"></iconify-icon></div>
+              <span class="px-2 py-0.5 bg-pink-50 text-[#E91E63] text-[9px] font-bold rounded uppercase">Last Payout</span>
+            </div>
+            <div class="mt-4">
+              <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none">Last Withdrawal</p>
+              <h3 id="earn-last-amt" class="text-2xl font-black text-slate-800 mt-1">₹8,500</h3>
+              <p id="earn-last-date" class="text-[9px] font-bold text-slate-400 mt-1">20 May 2026</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Split Grid: Transactions Log vs. Bank configuration -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          
+          <!-- Transactions list (2 Cols) -->
+          <div class="lg:col-span-2 bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-50 pb-4">
+              <h3 class="text-base font-extrabold text-slate-800">Transaction History</h3>
+              <button onclick="exportHistory()" class="text-xs font-bold text-[#E91E63] hover:underline flex items-center gap-1"><iconify-icon icon="lucide:download" class="text-[10px]"></iconify-icon>Export Report</button>
+            </div>
+            
+            <div class="overflow-x-auto">
+              <table class="w-full text-left font-semibold text-xs text-slate-600">
+                <thead>
+                  <tr class="border-b border-slate-50 text-[10px] text-slate-400 uppercase tracking-wider">
+                    <th class="py-3 px-2">Date</th>
+                    <th class="py-3 px-2">Amount</th>
+                    <th class="py-3 px-2">Status</th>
+                    <th class="py-3 px-2">Ref ID</th>
+                  </tr>
+                </thead>
+                <tbody id="earnings-history-rows" class="divide-y divide-slate-50">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Bank Setup & Payout settings (1 Col) -->
+          <div class="space-y-8">
+            <!-- Bank Details Form -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Bank Details</h3>
+              <div class="space-y-3 font-semibold text-xs text-slate-700">
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Bank Name</p>
+                  <p id="bank-name-lbl">HDFC Bank Ltd</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Account Holder</p>
+                  <p id="bank-holder-lbl">Priya Sharma</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                  <p class="text-[9px] font-bold text-slate-400 uppercase">Account Number</p>
+                  <p id="bank-number-lbl">•••• •••• •••• 1234</p>
+                </div>
+              </div>
+              <button onclick="withdrawBalance()" class="w-full h-12 bg-[#E91E63] text-white font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-[#D81B60] text-xs transition-all shadow-lg shadow-pink-100">
+                Withdraw Available Balance
+              </button>
+            </div>
+
+            <!-- Auto-payout config settings -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Payout Settings</h3>
+              <div class="space-y-4 font-semibold text-xs text-slate-700">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h5 class="font-extrabold text-slate-800">Auto Payout</h5>
+                    <p class="text-[10px] text-slate-400">Withdraw weekly automatically</p>
+                  </div>
+                  <label class="relative inline-flex items-center cursor-pointer select-none">
+                    <input type="checkbox" id="earn-auto-toggle" checked class="sr-only peer">
+                    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#E91E63]"></div>
+                  </label>
+                </div>
+                
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold text-slate-400 uppercase">Withdrawal Frequency</label>
+                  <select id="earn-freq" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 outline-none">
+                    <option>Weekly</option>
+                    <option>Bi-weekly</option>
+                    <option>Monthly</option>
+                  </select>
+                </div>
+
+                <div class="space-y-1">
+                  <label class="text-[10px] font-bold text-slate-400 uppercase">Min. Payout Limit (₹)</label>
+                  <input type="number" id="earn-threshold" value="500" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 outline-none">
+                </div>
+
+                <button onclick="savePayoutSettings()" class="w-full h-11 border border-[#E91E63] text-[#E91E63] font-bold rounded-xl text-xs hover:bg-pink-50 transition-colors">
+                  Save Payout Preferences
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", renderEarningsDetails);
+
+    function renderEarningsDetails() {
+      const earn = JSON.parse(localStorage.getItem(Auth.KEYS.USER_EARNINGS));
+      if (!earn) return;
+
+      document.getElementById("earn-avail-bal").textContent = `₹ ${earn.availableBalance.toLocaleString()}`;
+      document.getElementById("earn-pend-bal").textContent = `₹ ${earn.pendingBalance.toLocaleString()}`;
+      document.getElementById("earn-last-amt").textContent = `₹ ${earn.lastPayoutAmount.toLocaleString()}`;
+      document.getElementById("earn-last-date").textContent = earn.lastPayoutDate;
+
+      // Bank info
+      document.getElementById("bank-name-lbl").textContent = earn.bankDetails.bankName;
+      document.getElementById("bank-holder-lbl").textContent = earn.bankDetails.holderName;
+      document.getElementById("bank-number-lbl").textContent = earn.bankDetails.accountNumber;
+
+      // Settings
+      document.getElementById("earn-auto-toggle").checked = earn.payoutSettings.autoPayout;
+      document.getElementById("earn-freq").value = earn.payoutSettings.frequency;
+      document.getElementById("earn-threshold").value = earn.payoutSettings.minThreshold;
+
+      // Table history rows
+      const historyTable = document.getElementById("earnings-history-rows");
+      historyTable.innerHTML = earn.transactionHistory.map(row => {
+        let badgeColor = "text-green-600 bg-green-50";
+        if (row.status === "Processing") badgeColor = "text-orange-600 bg-orange-50";
+        if (row.status === "Failed") badgeColor = "text-red-500 bg-red-50";
+        
+        return `
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="py-4 px-2 text-slate-800 font-bold">${row.date}</td>
+            <td class="py-4 px-2 font-black">${row.type === 'Withdrawal' ? '-' : '+'} ₹ ${row.amount.toLocaleString()}</td>
+            <td class="py-4 px-2"><span class="px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider ${badgeColor}">${row.status}</span></td>
+            <td class="py-4 px-2 text-[10px] text-slate-400 font-bold font-mono">${row.reference}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    window.withdrawBalance = function() {
+      const earn = JSON.parse(localStorage.getItem(Auth.KEYS.USER_EARNINGS));
+      if (earn.availableBalance === 0) {
+        alert("Available balance is ₹0. No amount to withdraw.");
+        return;
+      }
+
+      if (confirm(`Withdraw ₹${earn.availableBalance} to your bank account (${earn.bankDetails.bankName})?`)) {
+        const amt = earn.availableBalance;
+        earn.availableBalance = 0;
+        earn.lastPayoutAmount = amt;
+        
+        const date = new Date();
+        const dateStr = date.toLocaleDateString([], { day: '2-digit', month: 'short', year: 'numeric' });
+        earn.lastPayoutDate = dateStr;
+
+        // Add transaction item
+        earn.transactionHistory.unshift({
+          date: dateStr,
+          amount: amt,
+          status: "Completed",
+          type: "Withdrawal",
+          reference: `#RH-${Math.floor(10000 + Math.random() * 90000)}`,
+          bank: earn.bankDetails.bankName.split(" ")[0] + " • 1234"
+        });
+
+        localStorage.setItem(Auth.KEYS.USER_EARNINGS, JSON.stringify(earn));
+        
+        // Add notification
+        const notifs = JSON.parse(localStorage.getItem(Auth.KEYS.USER_NOTIFICATIONS)) || [];
+        notifs.unshift({
+          id: "notif_" + Date.now(),
+          type: "payment",
+          title: "Withdrawal Settled",
+          message: `Your payout of ₹${amt} was successfully transferred to your HDFC account.`,
+          time: "Just now",
+          isRead: false,
+          link: "earnings.html"
+        });
+        localStorage.setItem(Auth.KEYS.USER_NOTIFICATIONS, JSON.stringify(notifs));
+
+        renderEarningsDetails();
+        alert("Withdrawal successfully completed!");
+      }
+    };
+
+    window.savePayoutSettings = function() {
+      const earn = JSON.parse(localStorage.getItem(Auth.KEYS.USER_EARNINGS));
+      earn.payoutSettings.autoPayout = document.getElementById("earn-auto-toggle").checked;
+      earn.payoutSettings.frequency = document.getElementById("earn-freq").value;
+      earn.payoutSettings.minThreshold = parseInt(document.getElementById("earn-threshold").value);
+
+      localStorage.setItem(Auth.KEYS.USER_EARNINGS, JSON.stringify(earn));
+      alert("Payout settings updated successfully!");
+    };
+
+    window.exportHistory = function() {
+      alert("Exporting withdrawal transactions list report...");
+    };
+  </script>
+</body>
+</html>

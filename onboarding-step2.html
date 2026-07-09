@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Services - RiseHer Onboarding</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 md:p-12">
+  <div class="bg-white w-full max-w-5xl rounded-[32px] overflow-hidden custom-shadow-lg flex flex-col md:flex-row min-h-[600px]">
+    
+    <!-- Left Panel: Form Input -->
+    <div class="flex-1 p-6 md:p-10 flex flex-col justify-between border-r border-slate-50">
+      <div class="space-y-6">
+        <!-- Header & Steps -->
+        <header class="flex items-center gap-3">
+          <a href="onboarding-step1.html" class="w-10 h-10 flex items-center justify-center text-slate-800 hover:bg-slate-50 rounded-full transition-colors">
+            <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+          </a>
+          <div>
+            <h1 class="text-xl font-bold text-slate-900">Add First Service</h1>
+            <p class="text-xs text-slate-400">Step 2 of 5 • Skills & Services</p>
+          </div>
+        </header>
+
+        <!-- Step Bar -->
+        <div class="space-y-2">
+          <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div class="progress-bar h-full w-[40%] rounded-full"></div>
+          </div>
+        </div>
+
+        <!-- Preset Templates Nudges -->
+        <div class="space-y-2">
+          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Select Preset Template to Auto-Fill</label>
+          <div class="flex flex-wrap gap-2" id="presets-container">
+            <button type="button" onclick="applyPreset('Blouse Stitching', 'Tailoring', 600, '3-5 days', 'Perfect fit bridal and designer blouse stitching with custom patterns.')" class="px-3 py-1.5 bg-pink-50 text-[#E91E63] border border-pink-100 hover:bg-[#E91E63] hover:text-white text-xs font-bold rounded-xl transition-all">Tailoring</button>
+            <button type="button" onclick="applyPreset('Bridal Makeup Combo', 'Beautician', 4500, '4-5 hours', 'Complete bridal makeovers including hair styling, draping and HD makeup.')" class="px-3 py-1.5 bg-indigo-50 text-indigo-600 border border-indigo-100 hover:bg-indigo-600 hover:text-white text-xs font-bold rounded-xl transition-all">Beautician</button>
+            <button type="button" onclick="applyPreset('Bridal Mehendi Art', 'Mehendi Artist', 1500, '3-4 hours', 'Traditional arabic and floral pattern mehendi for both hands up to elbow.')" class="px-3 py-1.5 bg-purple-50 text-purple-600 border border-purple-100 hover:bg-purple-600 hover:text-white text-xs font-bold rounded-xl transition-all">Mehendi</button>
+            <button type="button" onclick="applyPreset('Aari Work Embroidery', 'Embroidery Worker', 1200, '5-7 days', 'Exquisite hand-stitched Aari work detailing custom designs for back-neck blouses.')" class="px-3 py-1.5 bg-green-50 text-green-600 border border-green-100 hover:bg-green-600 hover:text-white text-xs font-bold rounded-xl transition-all">Embroidery</button>
+            <button type="button" onclick="applyPreset('Primary Math Tuition', 'Home Teacher', 1500, '1 month', 'Daily standard tuition for Grade 1-5 students focusing on core math concepts.')" class="px-3 py-1.5 bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-600 hover:text-white text-xs font-bold rounded-xl transition-all">Teaching</button>
+            <button type="button" onclick="applyPreset('Event Catering Service', 'Cooking Chef', 250, '1 item', 'Traditional home-cooked lunch catering menu items for small scale home events.')" class="px-3 py-1.5 bg-yellow-50 text-yellow-600 border border-yellow-100 hover:bg-yellow-600 hover:text-white text-xs font-bold rounded-xl transition-all">Cooking</button>
+          </div>
+        </div>
+
+        <!-- Form fields -->
+        <form id="step2-form" class="space-y-4">
+          <div class="space-y-2">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Service Title</label>
+            <input type="text" id="service-name" required value="Blouse Stitching" placeholder="e.g. Designer Saree Draping" class="w-full px-4 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 text-[15px] font-semibold transition-all focus:bg-white focus:border-[#E91E63] outline-none">
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Price (₹)</label>
+              <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₹</span>
+                <input type="number" id="service-price" required value="600" placeholder="0" class="w-full pl-8 pr-4 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 text-[15px] font-semibold transition-all focus:bg-white focus:border-[#E91E63] outline-none">
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Turnaround / Duration</label>
+              <input type="text" id="service-duration" required value="3-5 days" placeholder="e.g. 2 hours, 3 days" class="w-full px-4 py-3.5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 text-[15px] font-semibold transition-all focus:bg-white focus:border-[#E91E63] outline-none">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Service Description</label>
+            <textarea id="service-desc" rows="3" required placeholder="Describe details of custom designs, fittings, fabrics, etc." class="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 placeholder:text-slate-400 text-sm font-medium transition-all focus:bg-white focus:border-[#E91E63] outline-none resize-none">Perfect fit bridal and designer blouse stitching with custom patterns.</textarea>
+          </div>
+        </form>
+      </div>
+
+      <!-- Action Footer -->
+      <footer class="pt-8 border-t border-slate-50 flex items-center gap-4">
+        <a href="onboarding-step1.html" class="flex-1 h-[54px] flex items-center justify-center border border-slate-200 text-slate-600 font-bold rounded-2xl active:bg-slate-50 transition-all">Previous</a>
+        <button type="submit" form="step2-form" class="flex-[2] h-[54px] flex items-center justify-center bg-[#E91E63] text-white font-bold rounded-2xl hover:bg-[#D81B60] active:scale-[0.98] transition-all shadow-lg shadow-pink-100">Next Step</button>
+      </footer>
+    </div>
+
+    <!-- Right Panel: Interactive Service Card Preview -->
+    <div class="hidden md:flex flex-col items-center justify-center bg-slate-50 p-10 w-[420px] shrink-0 border-l border-slate-100 relative overflow-hidden">
+      <!-- Background gradients -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-pink-100 rounded-full filter blur-3xl opacity-30 -mr-20 -mt-20"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-100 rounded-full filter blur-3xl opacity-30 -ml-20 -mb-20"></div>
+
+      <div class="absolute top-8 left-8 flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+        <iconify-icon icon="lucide:eye" class="text-lg"></iconify-icon> Service preview
+      </div>
+
+      <!-- Card Mockup -->
+      <div class="w-full max-w-[320px] bg-white rounded-3xl p-5 border border-slate-50 custom-shadow-lg relative z-10 hover:scale-[1.02] transition-transform space-y-4">
+        <div class="w-full aspect-video bg-pink-50 rounded-2xl flex items-center justify-center text-[#E91E63] relative overflow-hidden">
+          <iconify-icon icon="lucide:scissors" class="text-4xl" id="preview-service-icon"></iconify-icon>
+          <span class="absolute top-3 right-3 px-2 py-0.5 bg-green-50 text-green-600 text-[9px] font-bold rounded uppercase">Active</span>
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <h3 id="preview-service-name" class="font-extrabold text-slate-900 text-[15px] truncate max-w-[170px]">Blouse Stitching</h3>
+            <span id="preview-service-price" class="text-[17px] font-extrabold text-[#E91E63]">₹600</span>
+          </div>
+          <div class="flex items-center gap-2 text-[10px] text-slate-400 font-bold">
+            <span id="preview-service-category" class="bg-slate-100 px-2 py-0.5 rounded text-slate-500 uppercase tracking-wide">Tailoring</span>
+            <div class="flex items-center gap-0.5 text-yellow-500">
+              <iconify-icon icon="lucide:star"></iconify-icon>
+              <span>4.8</span>
+              <span class="text-slate-300 font-normal">(1)</span>
+            </div>
+          </div>
+        </div>
+
+        <p id="preview-service-desc" class="text-xs text-slate-500 line-clamp-2 leading-relaxed">Perfect fit bridal and designer blouse stitching with custom patterns.</p>
+
+        <div class="flex items-center gap-1 text-[10px] font-bold text-slate-400 border-t border-slate-50 pt-3">
+          <iconify-icon icon="lucide:clock" class="text-xs"></iconify-icon>
+          <span>Time: <span id="preview-service-duration">3-5 days</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    const serviceName = document.getElementById("service-name");
+    const servicePrice = document.getElementById("service-price");
+    const serviceDuration = document.getElementById("service-duration");
+    const serviceDesc = document.getElementById("service-desc");
+
+    const pName = document.getElementById("preview-service-name");
+    const pPrice = document.getElementById("preview-service-price");
+    const pDuration = document.getElementById("preview-service-duration");
+    const pDesc = document.getElementById("preview-service-desc");
+    const pCategory = document.getElementById("preview-service-category");
+    const pIcon = document.getElementById("preview-service-icon");
+
+    let currentCategory = "Tailoring";
+
+    function updatePreview() {
+      pName.textContent = serviceName.value || "Service Name";
+      pPrice.textContent = `₹${servicePrice.value || '0'}`;
+      pDuration.textContent = serviceDuration.value || "Immediate";
+      pDesc.textContent = serviceDesc.value || "Service Description...";
+      pCategory.textContent = currentCategory;
+
+      // Swap icons dynamically depending on category
+      const iconMap = {
+        "Tailoring": "lucide:scissors",
+        "Beautician": "lucide:sparkles",
+        "Mehendi Artist": "lucide:palette",
+        "Embroidery Worker": "lucide:flower",
+        "Home Teacher": "lucide:book-open",
+        "Cooking Chef": "lucide:cooking-pot"
+      };
+      pIcon.setAttribute("icon", iconMap[currentCategory] || "lucide:briefcase");
+    }
+
+    serviceName.addEventListener("input", updatePreview);
+    servicePrice.addEventListener("input", updatePreview);
+    serviceDuration.addEventListener("input", updatePreview);
+    serviceDesc.addEventListener("input", updatePreview);
+
+    function applyPreset(name, category, price, duration, desc) {
+      serviceName.value = name;
+      servicePrice.value = price;
+      serviceDuration.value = duration;
+      serviceDesc.value = desc;
+      currentCategory = category;
+      updatePreview();
+    }
+
+    // Submit and store the service
+    document.getElementById("step2-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Pull current services, add this one
+      const services = JSON.parse(localStorage.getItem(Auth.KEYS.USER_SERVICES)) || [];
+      const newService = {
+        id: "srv_" + Date.now(),
+        name: serviceName.value,
+        category: currentCategory,
+        price: parseInt(servicePrice.value),
+        duration: serviceDuration.value,
+        status: "Active",
+        rating: 5.0,
+        reviewsCount: 0,
+        description: serviceDesc.value
+      };
+
+      // Add to start of list
+      services.unshift(newService);
+      localStorage.setItem(Auth.KEYS.USER_SERVICES, JSON.stringify(services));
+
+      // Update completion score
+      const profile = Auth.getProfile();
+      if (profile) {
+        profile.completionScore = 40;
+        Auth.saveProfile(profile);
+      }
+
+      window.location.href = "onboarding-step3.html";
+    });
+
+    // Start fill
+    updatePreview();
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saved Professionals - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 max-w-4xl space-y-6">
+        
+        <header class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">Saved Professionals</h2>
+            <p class="text-xs text-slate-500 font-semibold">Your bookmarked and favorite women-led micro-businesses.</p>
+          </div>
+        </header>
+
+        <!-- Professionals Results Grid -->
+        <section id="saved-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated from JS -->
+        </section>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderSavedProfessionals();
+    });
+
+    function renderSavedProfessionals() {
+      const grid = document.getElementById("saved-grid");
+      if (!grid) return;
+
+      const profile = Auth.getProfile();
+      const savedIds = profile.savedProfessionals || ["pro_priya", "pro_meena"]; // Default mock list if not loaded
+
+      const professionals = window.PROFESSIONALS || [];
+      const savedProfs = professionals.filter(p => savedIds.includes(p.id));
+
+      if (savedProfs.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-12 text-center text-xs text-slate-400 font-bold border border-slate-50 custom-shadow">
+            <iconify-icon icon="lucide:heart-off" class="text-4xl text-slate-200 mb-2 block mx-auto"></iconify-icon>
+            No saved professionals yet. Explore the search marketplace to bookmark profiles.
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = savedProfs.map(pro => {
+        return window.renderProfessionalCard(pro);
+      }).join("");
+    }
+  </script>
+</body>
+</html>

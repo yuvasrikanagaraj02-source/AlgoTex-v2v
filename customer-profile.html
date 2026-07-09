@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Profile - RiseHer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body class="bg-[#FAFAFA]">
+
+  <div class="flex min-h-screen flex-col md:flex-row">
+    <!-- Desktop Sidebar wrapper -->
+    <div id="layout-sidebar" class="hidden md:block w-[280px] shrink-0 fixed left-0 top-0 h-screen z-50"></div>
+
+    <div class="flex-1 flex flex-col md:ml-[280px]">
+      <!-- Header wrapper -->
+      <header id="layout-header" class="shrink-0 bg-white border-b border-slate-100 px-6 py-4 md:px-12 md:py-6 sticky top-0 z-40"></header>
+      
+      <!-- Main Content -->
+      <main class="flex-1 p-6 md:p-12 pb-[100px] md:pb-12 max-w-4xl space-y-8">
+        
+        <header class="flex items-center justify-between">
+          <div class="space-y-1">
+            <h2 class="text-2xl font-black text-slate-900 tracking-tight">My Profile Settings</h2>
+            <p class="text-xs text-slate-500 font-semibold">Manage your personal information, addresses, and payment details.</p>
+          </div>
+        </header>
+
+        <!-- Profile Detail Card -->
+        <section class="bg-white rounded-3xl p-6 md:p-8 border border-slate-50 custom-shadow flex flex-col md:flex-row gap-6 items-center justify-between">
+          <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="relative shrink-0 group">
+              <img id="profile-avatar-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150" class="w-20 h-20 rounded-3xl object-cover ring-4 ring-pink-50 shadow-sm" alt="Avatar">
+              <button class="absolute -bottom-1 -right-1 w-7 h-7 bg-[#E91E63] text-white rounded-full flex items-center justify-center shadow hover:bg-[#D81B60] transition-colors"><iconify-icon icon="lucide:camera" class="text-xs"></iconify-icon></button>
+            </div>
+            <div class="text-center md:text-left space-y-1">
+              <div class="flex flex-col md:flex-row items-center gap-2">
+                <h3 class="text-xl font-black text-slate-900" id="profile-name-display">Anjali Sharma</h3>
+                <span class="px-2.5 py-0.5 bg-pink-50 text-[#E91E63] rounded-full text-[9px] font-bold uppercase tracking-wider">Premium Member</span>
+              </div>
+              <p class="text-xs text-slate-500 font-semibold" id="profile-email-display">anjali@example.com</p>
+              <p class="text-xs text-slate-400 font-semibold" id="profile-phone-display">+91 98765 00112</p>
+            </div>
+          </div>
+          <button onclick="toggleEditMode()" id="edit-profile-btn" class="h-11 px-5 bg-slate-50 hover:bg-pink-50 hover:text-[#E91E63] text-slate-700 font-bold rounded-xl text-xs flex items-center gap-2 transition-all shrink-0">
+            <iconify-icon icon="lucide:edit-3" class="text-sm"></iconify-icon>Edit Profile
+          </button>
+        </section>
+
+        <!-- Edit Form (Hidden by default) -->
+        <section id="edit-profile-form-section" class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow hidden space-y-4">
+          <h3 class="text-sm font-extrabold text-slate-800">Edit Personal Information</h3>
+          <form onsubmit="saveProfileInfo(event)" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="text-[10px] font-bold text-slate-400 uppercase">Full Name</label>
+                <input type="text" id="edit-name" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:border-[#E91E63] outline-none" required>
+              </div>
+              <div class="space-y-1">
+                <label class="text-[10px] font-bold text-slate-400 uppercase">Phone Number</label>
+                <input type="text" id="edit-phone" class="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold text-slate-800 focus:bg-white focus:border-[#E91E63] outline-none" required>
+              </div>
+            </div>
+            <div class="flex justify-end gap-3 pt-2">
+              <button type="button" onclick="toggleEditMode()" class="h-10 px-4 border border-slate-200 text-slate-600 font-bold rounded-xl text-xs">Cancel</button>
+              <button type="submit" class="h-10 px-5 bg-[#E91E63] text-white font-bold rounded-xl text-xs hover:bg-[#D81B60]">Save Changes</button>
+            </div>
+          </form>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          <!-- Column 1: Addresses -->
+          <div class="space-y-6">
+            <section class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><iconify-icon icon="lucide:map-pin" class="text-[#E91E63] text-sm"></iconify-icon>Saved Addresses</h3>
+                <button onclick="addAddressPrompt()" class="text-[#E91E63] text-xs font-bold hover:underline flex items-center gap-0.5"><iconify-icon icon="lucide:plus"></iconify-icon>Add</button>
+              </div>
+              <div id="addresses-list-container" class="space-y-3 font-semibold text-xs text-slate-700">
+                <!-- Dynamic list -->
+              </div>
+            </section>
+          </div>
+
+          <!-- Column 2: Saved Payment Cards -->
+          <div class="space-y-6">
+            <section class="bg-white rounded-3xl p-6 border border-slate-50 custom-shadow space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><iconify-icon icon="lucide:credit-card" class="text-[#E91E63] text-sm"></iconify-icon>Saved Cards</h3>
+                <button onclick="addCardPrompt()" class="text-[#E91E63] text-xs font-bold hover:underline flex items-center gap-0.5"><iconify-icon icon="lucide:plus"></iconify-icon>Add</button>
+              </div>
+              <div id="cards-list-container" class="space-y-3 font-semibold text-xs text-slate-700">
+                <!-- Dynamic list -->
+              </div>
+            </section>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation wrapper -->
+    <nav id="layout-mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 z-50 px-6 pb-2"></nav>
+  </div>
+<script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/role.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/router.js"></script>
+  <script>
+    let editMode = false;
+    let customerProfile = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProfileDetails();
+    });
+
+    function loadProfileDetails() {
+      customerProfile = Auth.getProfile();
+      if (!customerProfile) return;
+
+      document.getElementById("profile-name-display").textContent = customerProfile.name;
+      document.getElementById("profile-email-display").textContent = customerProfile.email;
+      document.getElementById("profile-phone-display").textContent = customerProfile.phone;
+      document.getElementById("profile-avatar-img").src = customerProfile.avatarUrl;
+
+      // Set input values for form
+      document.getElementById("edit-name").value = customerProfile.name;
+      document.getElementById("edit-phone").value = customerProfile.phone;
+
+      renderAddresses();
+      renderCards();
+    }
+
+    function renderAddresses() {
+      const container = document.getElementById("addresses-list-container");
+      if (!container) return;
+
+      const addresses = customerProfile.addresses || [];
+      if (addresses.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">No addresses saved yet</p>`;
+        return;
+      }
+
+      container.innerHTML = addresses.map((addr, idx) => `
+        <div class="flex items-center justify-between p-3.5 bg-slate-50 border border-slate-100 rounded-2xl">
+          <div class="flex items-start gap-2.5 min-w-0">
+            <iconify-icon icon="lucide:map-pin" class="text-slate-400 mt-0.5 shrink-0"></iconify-icon>
+            <span class="truncate pr-4 leading-normal">${addr}</span>
+          </div>
+          <button onclick="deleteAddress(${idx})" class="text-slate-400 hover:text-red-500 shrink-0"><iconify-icon icon="lucide:trash" class="text-base"></iconify-icon></button>
+        </div>
+      `).join("");
+    }
+
+    function renderCards() {
+      const container = document.getElementById("cards-list-container");
+      if (!container) return;
+
+      const cards = customerProfile.savedCards || [];
+      if (cards.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">No cards saved yet</p>`;
+        return;
+      }
+
+      container.innerHTML = cards.map((card, idx) => `
+        <div class="flex items-center justify-between p-3.5 bg-slate-50 border border-slate-100 rounded-2xl">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <iconify-icon icon="lucide:credit-card" class="text-slate-400 shrink-0"></iconify-icon>
+            <span class="truncate">${card}</span>
+          </div>
+          <button onclick="deleteCard(${idx})" class="text-slate-400 hover:text-red-500 shrink-0"><iconify-icon icon="lucide:trash" class="text-base"></iconify-icon></button>
+        </div>
+      `).join("");
+    }
+
+    window.toggleEditMode = function() {
+      editMode = !editMode;
+      const formSection = document.getElementById("edit-profile-form-section");
+      if (editMode) {
+        formSection.classList.remove("hidden");
+      } else {
+        formSection.classList.add("hidden");
+      }
+    };
+
+    window.saveProfileInfo = function(e) {
+      e.preventDefault();
+      
+      const newName = document.getElementById("edit-name").value;
+      const newPhone = document.getElementById("edit-phone").value;
+
+      // Update mock collection in mock-data.js
+      const customers = window.CUSTOMERS || [];
+      const user = localStorage.getItem("riseher_user") || "anjali";
+      const custIdx = customers.findIndex(c => c.email.includes(user));
+      
+      if (custIdx !== -1) {
+        customers[custIdx].name = newName;
+        customers[custIdx].phone = newPhone;
+      }
+
+      // Sync and reload
+      loadProfileDetails();
+      toggleEditMode();
+      syncProfileDetails(); // Update sidebar name as well
+      alert("Profile updated successfully!");
+    };
+
+    window.addAddressPrompt = function() {
+      const addr = prompt("Enter new delivery/service address:");
+      if (addr) {
+        const customers = window.CUSTOMERS || [];
+        const user = localStorage.getItem("riseher_user") || "anjali";
+        const cust = customers.find(c => c.email.includes(user)) || customers[0];
+        
+        if (cust) {
+          cust.addresses.push(addr);
+          loadProfileDetails();
+        }
+      }
+    };
+
+    window.deleteAddress = function(idx) {
+      if (confirm("Delete this address?")) {
+        const customers = window.CUSTOMERS || [];
+        const user = localStorage.getItem("riseher_user") || "anjali";
+        const cust = customers.find(c => c.email.includes(user)) || customers[0];
+        
+        if (cust) {
+          cust.addresses.splice(idx, 1);
+          loadProfileDetails();
+        }
+      }
+    };
+
+    window.addCardPrompt = function() {
+      const card = prompt("Enter payment card name (e.g. Visa ending in •••• 9876):");
+      if (card) {
+        const customers = window.CUSTOMERS || [];
+        const user = localStorage.getItem("riseher_user") || "anjali";
+        const cust = customers.find(c => c.email.includes(user)) || customers[0];
+        
+        if (cust) {
+          cust.savedCards.push(card);
+          loadProfileDetails();
+        }
+      }
+    };
+
+    window.deleteCard = function(idx) {
+      if (confirm("Delete this card?")) {
+        const customers = window.CUSTOMERS || [];
+        const user = localStorage.getItem("riseher_user") || "anjali";
+        const cust = customers.find(c => c.email.includes(user)) || customers[0];
+        
+        if (cust) {
+          cust.savedCards.splice(idx, 1);
+          loadProfileDetails();
+        }
+      }
+    };
+  </script>
+</body>
+</html>
