@@ -14,7 +14,7 @@
 | Resource | Link |
 |----------|------|
 | 🚀 **Live Deployment** | [Visit Live Site](https://riseher2k26.netlify.app)  |
-| 🎥 **Demo Video** | [Insert YouTube/Drive URL here] |
+| 🎥 **Demo Video** | [![Watch the video](https://img.youtube.com/vi/FTceuDDJ2J0/0.jpg)](https://youtu.be/FTceuDDJ2J0?si=5dyRoFLcvw20kc2o) |
 | 📦 **Repository** | `https://github.com/yuvasrikanagaraj02-source/AlgoTex-v2v` |
 
 ---
