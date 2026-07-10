@@ -15,7 +15,7 @@
 |----------|------|
 | 🚀 **Live Deployment** | [riseher2k26.netlify.app]  |
 | 🎥 **Demo Video** | [Insert YouTube/Drive URL here] |
-| 📦 **Repository** | `https://github.com/yourusername/riseher-app` |
+| 📦 **Repository** | `https://github.com/yuvasrikanagaraj02-source/AlgoTex-v2v` |
 
 ---
 
