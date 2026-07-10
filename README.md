@@ -5,12 +5,6 @@
 
 *A mobile-first platform unifying mentorship, skill-building, and community for women professionals*
 
-![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![License](https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
-![Made with](https://img.shields.io/badge/Made%20with-HTML%2FCSS%2FJS-orange?style=for-the-badge)
-
-</div>
 
 ---
 
